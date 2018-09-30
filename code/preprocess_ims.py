@@ -156,3 +156,4 @@ if __name__ == '__main__':
 
     combine_masks(out_val_dir)
     combine_masks(out_train_dir)
+    
