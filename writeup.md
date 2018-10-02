@@ -24,16 +24,16 @@ In this project, I trained a deep neural network to identify and track a target 
 In this project I used the architecture similar to the one shown in lesson: Encoder section, 1x1 convolution Layer, and Decoder section with skip connection between layers.
 
 ### **Model 1:** ![alt text][model1]
-  **Final score was 38%.** Since this model didn't meet the pass grade, I didn't do much more analysis and moved on to a different model.
+  The first model has a total of 5 layers, with two encoders (depths of 32 and 64), two decoders (depths of 64 and 32) and skip connections shown in graph. **Final score was 38%.** Since this model didn't meet the pass grade, I didn't do much more analysis and moved on to a different model.
 
 ### **Model 2:**![alt text][model2]
-  **Final score was 41%.** First passing grade achieved! The following images show the masks:
+  Since the first model didn't prove to be a good model, I add two more layers to the network. The second model has a total of 7 layers, with three encoders (depths of 32, 64, and 128), three decoders (depths of 128, 64 and 32) and skip connections shown in graph. **Final score was 41%.** First passing grade achieved! The following images show the masks:
   * ![alt text][2_Fol]
   * ![alt text][2_Dis]
   * ![alt text][2_No]
 
 ### **Model 3:** ![alt text][model3]
-  **Final score was 44%.** Second passing grade achieved! The following images show the masks:
+  This is a model that I wanted the try out after the second model. The third model has a total of 5 layers, with two encoders (depths of 64 and 128), two decoders (depths of 128 and 64) and skip connections shown in graph. **Final score was 44%.** Second passing grade achieved! The following images show the masks:
   * ![alt text][3_Fol]
   * ![alt text][3_Dis]
   * ![alt text][3_No]
