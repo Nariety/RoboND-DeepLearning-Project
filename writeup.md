@@ -21,7 +21,7 @@ In this project, I trained a deep neural network to identify and track a target 
 ![alt text][image_0]
 
 ## Network Architecture and Performance##
-In this project I used the architecture similar to the one shown in lesson: Encoder section, 1x1 Convolutional Layer, and Decoder section with skip connection between layers.
+In this project I used the architecture similar to the one shown in lesson: Encoder section, 1x1 convolution Layer, and Decoder section with skip connection between layers.
 
 ### **Model 1:** ![alt text][model1]
   **Final score was 38%.** Since this model didn't meet the pass grade, I didn't do much more analysis and moved on to a different model.
@@ -61,20 +61,29 @@ I chose `4` to be the number of workers because it provided a improvement withou
 For the validation steps I kept the default values.
 
 ## Neural Network Layers and Techniques ##
-In the context of this project, the fully convolutional network used consisted of three sections, encoder layers, 1x1 convolutional layer, and decoder layers.
+In the context of this project, the fully convolution network used consisted of three sections, encoder layers, 1x1 convolution layer, and decoder layers.
 
+### Separable Convolution Layer
+
+#### Batch Normalization
+Batch normalization is a normalization method that accelerates the training process of a neural network. Instead of normalizing just the input layer, we normalize the inputs of all layers by using the mean and variances of the values in the current mini-batch. It works because between each iterations, it reduces the previous changes and make it less dependent between layers.
+
+### Encoder
 The encoder layers are separable convolution layers that "squeeze" out features from images by building up the depth dimension. The first layer finds simple lines or colors and the outputs of the first layer is passed on as inputs of the second layer. As the encoder layers progress, more complex features are extracted.
 
-The output of the encoder layers are then passed on to a 1x1 convolutional layer. It has a similar function to a fully connected layer, however, it not only flattens the image but also maintains spatial information.
+### 1x1 Convolution Layer
+The output of the encoder layers are then passed on to a 1x1 convolution layer. It has a similar function to a fully connected layer, however, it not only flattens the image but also maintains spatial information.
 
-The 1x1 convolutional layer is then connected to the decoder layers. The number and dimension of the decoder layers corresponds to those of the encoder layers. They upsample the extracted features to represent the spatial information in the original image dimension. They also use skip connection to concatenate layers from previous layers to fill pixels that were extracted out in the encoder section.
+### Decoder
+The 1x1 convolution layer is then connected to the decoder layers. The number and dimension of the decoder layers corresponds to those of the encoder layers. They upsample the extracted features to represent the spatial information in the original image dimension by using **bilinear upsampling** method, which is a way to estimate new pixel values based on the average of neighboring pixel values. They also use **skip connection**, a way to retain original pixel information by skipping in-between layers, to concatenate layers from previous layers to fill pixels that were extracted out in the encoder section.
+
 
 ## Discussion ##
 At the beginning of the project, I ran into a road block that one of the libraries used in `preprocess_ims.py` was deprecated and as a result I couldn't train the neural network with data that I recorded. I tried to fix it. Since my laptop does not have nearly enough processing power for neural network training, I had to rely on Amazon's `p2.xlarge` instance for training. I tried to update the outdated instance but because I could neither log in as `root` nor acquire the `sudo` permission right on the bat, I decided to move on to optimizing the hyperparameters and the architecture first instead. Fortunately, the second model worked reasonably well and was enough for a passing grade for this project.
 
 Interestingly enough, even though from the looks of the masks generated in notebook, model2 seemed to have a better performance, model3 actually had a higher final score. Thus I'm submitting this project with settings for model3 (model1 and model2 are in notebook as well).
 
-Even though the goal of this project is to train a neural network to recognize a "hero" human target, this fully convolutional network can be applied to recognize any other target such as dog, cat, car, etc. with corresponding training data sets.
+Even though the goal of this project is to train a neural network to recognize a "hero" human target, this fully convolution network can be applied to recognize any other target such as dog, cat, car, etc. with corresponding training data sets.
 
 ## Future Improvement ##
 I think more training data and possibly a more sophisticated architecture would improve the performance.
